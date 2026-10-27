@@ -30,6 +30,9 @@ android {
       buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
     }
     debug {
+      isMinifyEnabled = true
+      isShrinkResources = true
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       // for taking screenshots, use airplane mode
       // todo use .properties file gitignore
       // clear billing client cache, run in airplane mode
