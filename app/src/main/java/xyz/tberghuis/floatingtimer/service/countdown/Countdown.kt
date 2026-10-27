@@ -66,8 +66,13 @@ class Countdown(
         timerState.value = TimerStatePaused
       }
 
-      is TimerStateFinished -> {
-        reset()
+            is TimerStateFinished -> {
+        // 停止闹铃 + 重置秒数 + 立即重新开始
+        service.alarmController.stopAlarm(this)
+        countDownTimer?.cancel()
+        countdownSeconds = durationSeconds
+        saveTimerPositionIfNull()
+        timerState.value = TimerStateRunning
       }
     }
   }
